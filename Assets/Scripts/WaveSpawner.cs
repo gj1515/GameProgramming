@@ -18,7 +18,13 @@ public class WaveSpawner : MonoBehaviour
 
     void Spawn()
     {
-        Instantiate(prefab, transform.position, transform.rotation);
+        Vector3 spawnPosition = transform.position;
+        spawnPosition.x += Random.Range(10f, 40f) * (Random.Range(0, 2) == 0 ? 1 : -1);
+        spawnPosition.z += Random.Range(10f, 40f) * (Random.Range(0, 2) == 0 ? 1 : -1);
+
+        Quaternion spawnRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
+
+        Instantiate(prefab, spawnPosition, spawnRotation);
         InvokeRepeating("Spawn", startTime, spawnRate);
     }
 

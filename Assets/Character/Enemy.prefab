@@ -63,6 +63,12 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.95
       objectReference: {fileID: 0}
+    - target: {fileID: 1006334679412444116, guid: ef26b2dc882f2d741b1e5521ca67f8ef,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: be2e42f8a6476fd4285e00ce47f8c081,
+        type: 2}
     - target: {fileID: 1151039649992379448, guid: ef26b2dc882f2d741b1e5521ca67f8ef,
         type: 3}
       propertyPath: m_Layer
@@ -510,15 +516,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3170052297267817369, guid: ef26b2dc882f2d741b1e5521ca67f8ef,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4053088222082589815}
-    - targetCorrespondingSourceObject: {fileID: 3170052297267817369, guid: ef26b2dc882f2d741b1e5521ca67f8ef,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 457517767991999425}
     - targetCorrespondingSourceObject: {fileID: 3170052297267817369, guid: ef26b2dc882f2d741b1e5521ca67f8ef,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8872224257823843496}
+    - targetCorrespondingSourceObject: {fileID: 3170052297267817369, guid: ef26b2dc882f2d741b1e5521ca67f8ef,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6040564844933252520}
   m_SourcePrefab: {fileID: 100100000, guid: ef26b2dc882f2d741b1e5521ca67f8ef, type: 3}
 --- !u!1 &1252384598776011207 stripped
 GameObject:
@@ -526,19 +532,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4224117983472644702}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4053088222082589815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252384598776011207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17dc0ff7700713a42ad7f322527c2f9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
 --- !u!54 &457517767991999425
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -564,7 +557,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &8872224257823843496
 MonoBehaviour:
@@ -579,3 +572,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 100
+--- !u!114 &6040564844933252520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252384598776011207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9719f4dbc0bc442bb3c32b0c7f4e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10

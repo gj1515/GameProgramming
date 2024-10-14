@@ -10,13 +10,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementValue;
     private float lookValue;
     private Rigidbody rigidbody;
+    public float jumpForce = 5f;
 
     private void Awake()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        rigidbody = GetComponent<Rigidbody> ();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     public void OnMove(InputValue value)
@@ -34,5 +35,10 @@ public class PlayerMovement : MonoBehaviour
     {   
         rigidbody.AddRelativeForce(movementValue.x * Time.deltaTime, 0, movementValue.y * Time.deltaTime);
         rigidbody.AddRelativeTorque(0, lookValue * Time.deltaTime, 0);
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && Mathf.Abs(rigidbody.velocity.y) < 0.01f)
+        {
+            rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 }
