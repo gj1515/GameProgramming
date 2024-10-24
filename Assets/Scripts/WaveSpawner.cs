@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -9,28 +10,21 @@ public class WaveSpawner : MonoBehaviour
     public float endTime;
     public float spawnRate;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        WavesManager.instance.AddWave(this);
         InvokeRepeating("Spawn", startTime, spawnRate);
+        Invoke("EndSpawner", endTime);
     }
 
     void Spawn()
     {
-        Vector3 spawnPosition = transform.position;
-        spawnPosition.x += Random.Range(10f, 40f) * (Random.Range(0, 2) == 0 ? 1 : -1);
-        spawnPosition.z += Random.Range(10f, 40f) * (Random.Range(0, 2) == 0 ? 1 : -1);
-
-        Quaternion spawnRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
-
-        Instantiate(prefab, spawnPosition, spawnRotation);
-        InvokeRepeating("Spawn", startTime, spawnRate);
+        Instantiate(prefab, transform.position, transform.rotation);
     }
 
-    // Update is called once per frame
-    void Update()
+    void EndSpawner()
     {
-        
+        WavesManager.instance.RemoveWave(this);
+        CancelInvoke();
     }
 }
