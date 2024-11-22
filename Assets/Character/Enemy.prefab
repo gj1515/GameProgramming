@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1524957851292168820}
   - component: {fileID: 269405474910451}
   - component: {fileID: 5194334688793454324}
+  - component: {fileID: 3128372300263473939}
   m_Layer: 7
   m_Name: AI
   m_TagString: Untagged
@@ -45,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4b40f62390c274cb2fa0f208fd9261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 7
-  angle: 45
+  distance: 46.7
+  angle: 47.4
   objectsLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -61,7 +62,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829336377889984550}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61f5128c39b97464f83ec70f263b5ebf, type: 3}
   m_Name: 
@@ -74,6 +75,27 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3491904275903323327, guid: a030c3b47467702498ddad9806170341,
     type: 3}
   fireRate: 1
+--- !u!114 &3128372300263473939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829336377889984550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c4d127af817824ab2a99b1d630f2f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  sightSensor: {fileID: 269405474910451}
+  playerAttackDistance: 30
+  bulletPrefab: {fileID: 3491904275903323327, guid: a030c3b47467702498ddad9806170341,
+    type: 3}
+  fireRate: 1
+  wanderSpeed: 30
+  chaseSpeed: 30
+  wanderInterval: 3
 --- !u!1001 &4224117983472644702
 PrefabInstance:
   m_ObjectHideFlags: 0

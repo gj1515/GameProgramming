@@ -19,7 +19,8 @@ public class WaveSpawner : MonoBehaviour
 
     void Spawn()
     {
-        Instantiate(prefab, transform.position, transform.rotation);
+        GameObject newEnemy = Instantiate(prefab, transform.position, transform.rotation);
+        Debug.Log(newEnemy.name);
     }
 
     void EndSpawner()

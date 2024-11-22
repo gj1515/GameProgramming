@@ -16,4 +16,10 @@ public class Life : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    IEnumerator DestroyAfterEffect()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
+    }
 }

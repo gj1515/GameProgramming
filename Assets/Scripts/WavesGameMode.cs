@@ -7,24 +7,40 @@ public class WavesGameMode : MonoBehaviour
 {
     [SerializeField] private Life playerLife;
     [SerializeField] private Life playerBaseLife;
+    private bool isPlayerDead = false;
+    private bool isBaseDestroyed = false;
 
     void Start()
     {
-        playerLife.onDeath.AddListener(OnPlayerOrBaseDied);
-        playerBaseLife.onDeath.AddListener(OnPlayerOrBaseDied);
+        playerLife.onDeath.AddListener(OnPlayerDied);
+
+        playerBaseLife.onDeath.AddListener(OnBaseDestroyed);
+
         EnemiesManager.instance.onChanged.AddListener(CheckWinCondition);
         WavesManager.instance.onChanged.AddListener(CheckWinCondition);
     }
 
-    void OnPlayerOrBaseDied()
+    void OnPlayerDied()
     {
+        isPlayerDead = true;
+        Debug.Log("Player has died.");
         SceneManager.LoadScene("LoseScreen");
+    }
+
+    void OnBaseDestroyed()
+    {
+        isBaseDestroyed = true;
+        Debug.Log("Base has been destroyed.");
+        SceneManager.LoadScene("WinScreen");
     }
 
     void CheckWinCondition()
     {
-        if (EnemiesManager.instance.enemies.Count <= 0 && WavesManager.instance.waves.Count <= 0)
+        if (!isPlayerDead && !isBaseDestroyed &&
+            EnemiesManager.instance.enemies.Count <= 0 &&
+            WavesManager.instance.waves.Count <= 0)
         {
+            Debug.Log("Win condition met. Loading WinScreen...");
             SceneManager.LoadScene("WinScreen");
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyFSM : MonoBehaviour
 {
-    public enum EnemyState {GoToBase, AttackBase, ChasePlayer, AttackPlayer}
+    public enum EnemyState {GoToBase, AttackBase, ChasePlayer, AttackPlayer, Normal}
     public EnemyState currentState;
     public Sight sightSensor;
     private Transform baseTransform;
