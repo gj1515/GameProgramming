@@ -29,13 +29,22 @@
                     "id": "3d492b79-0a58-4f75-9c7f-5b9df98e549a",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
                     "name": "Fire2",
                     "type": "Button",
                     "id": "9725f2e6-ae3d-44c1-9e3b-bcb8572e27d6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "7cdfafbc-142d-40f4-94dd-db832fcf1c41",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -271,6 +280,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Fire2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aa24f4fc-87dd-4ef0-ab62-c8698439d62c",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

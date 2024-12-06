@@ -25,6 +25,8 @@ public class EnemyFSM2 : MonoBehaviour
     private static bool isPlayerDetected = false;
     private static Transform playerTransform;
 
+    Animator animator;
+
     void Awake()
     {
         agent = GetComponentInParent<NavMeshAgent>();
@@ -32,6 +34,8 @@ public class EnemyFSM2 : MonoBehaviour
         {
             Debug.LogError("NavMeshAgent component is missing on parent object! Please attach it.");
         }
+
+        animator = GetComponentInParent<Animator>();
     }
 
     void Start()
@@ -72,6 +76,7 @@ public class EnemyFSM2 : MonoBehaviour
 
     void Wander()
     {
+        animator.SetBool("Shooting", false);
         if (agent == null) return;
 
         agent.isStopped = false;
@@ -102,6 +107,7 @@ public class EnemyFSM2 : MonoBehaviour
 
     void ChasePlayer()
     {
+        animator.SetBool("Shooting", false);
         if (sightSensor == null || sightSensor.detectedObject == null)
         {
             currentState = EnemyState.Normal;
@@ -151,6 +157,7 @@ public class EnemyFSM2 : MonoBehaviour
 
     void Shoot()
     {
+        animator.SetBool("Shooting", true);
         var timeSinceLastShoot = Time.time - lastShootTime;
         if (timeSinceLastShoot > fireRate)
         {

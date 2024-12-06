@@ -15,6 +15,10 @@ public class Shield : MonoBehaviour
     Coroutine _disolveCoroutine;
     SphereCollider _sphereCollider;
 
+    [SerializeField] private float _shieldActivationDelay;
+
+    Animator animator;
+
     void Start()
     {
         _renderer = GetComponent<Renderer>();
@@ -24,6 +28,8 @@ public class Shield : MonoBehaviour
         {
             Debug.LogError("SphereCollider is missing!");
         }
+
+        animator = GetComponentInParent<Animator>();
     }
 
     void Update()
@@ -53,19 +59,30 @@ public class Shield : MonoBehaviour
     public void OpenCloseShield()
     {
         float target = 1;
+
         if (_shieldOn)
         {
             target = 0;
+            StartCoroutine(DelayedShieldActivation(target, _shieldActivationDelay));
         }
+        else
+        {
+            if (_disolveCoroutine != null)
+            {
+                StopCoroutine(_disolveCoroutine);
+            }
+            _disolveCoroutine = StartCoroutine(Coroutine_DisolveShield(target));
+            if (_sphereCollider != null)
+            {
+                _sphereCollider.enabled = false;
+            }
+        }
+
         _shieldOn = !_shieldOn;
-        if (_disolveCoroutine != null)
+
+        if (animator != null)
         {
-            StopCoroutine(_disolveCoroutine);
-        }
-        _disolveCoroutine = StartCoroutine(Coroutine_DisolveShield(target));
-        if (_sphereCollider != null)
-        {
-            _sphereCollider.enabled = !_shieldOn;
+            animator.SetBool("Shield", !_shieldOn);
         }
     }
 
@@ -89,6 +106,21 @@ public class Shield : MonoBehaviour
             _renderer.material.SetFloat("_Disolve", Mathf.Lerp(start, target, lerp));
             lerp += Time.deltaTime * _DisolveSpeed;
             yield return null;
+        }
+    }
+
+    IEnumerator DelayedShieldActivation(float target, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (_disolveCoroutine != null)
+        {
+            StopCoroutine(_disolveCoroutine);
+        }
+        _disolveCoroutine = StartCoroutine(Coroutine_DisolveShield(target));
+        if (_sphereCollider != null)
+        {
+            _sphereCollider.enabled = true;
         }
     }
 }

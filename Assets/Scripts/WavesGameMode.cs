@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class WavesGameMode : MonoBehaviour
 {
     [SerializeField] private Life playerLife;
-    [SerializeField] private Life playerBaseLife;
+    [SerializeField] private Life BaseLife;
     private bool isPlayerDead = false;
     private bool isBaseDestroyed = false;
 
@@ -14,7 +14,7 @@ public class WavesGameMode : MonoBehaviour
     {
         playerLife.onDeath.AddListener(OnPlayerDied);
 
-        playerBaseLife.onDeath.AddListener(OnBaseDestroyed);
+        BaseLife.onDeath.AddListener(OnBaseDestroyed);
 
         EnemiesManager.instance.onChanged.AddListener(CheckWinCondition);
         WavesManager.instance.onChanged.AddListener(CheckWinCondition);

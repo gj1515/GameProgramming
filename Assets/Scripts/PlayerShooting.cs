@@ -10,9 +10,46 @@ public class PlayerShooting : MonoBehaviour
     public GameObject Bullet2;
     public GameObject shootPoint;
 
+    public float fireRate;
+    public int bulletsAmount;
+
+    Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     public void OnFire(InputValue value)
+    {   
+        animator.SetBool("Shooting", value.isPressed);
+
+        if (value.isPressed)
+        {
+            InvokeRepeating("Shoot1", fireRate, fireRate);
+        }
+        else
+        {
+            CancelInvoke();
+        }
+    }
+
+    public void OnFire2(InputValue value)
     {
         if (value.isPressed)
+        {
+            InvokeRepeating("Shoot2", fireRate, fireRate);
+        }
+        else
+        {
+            CancelInvoke();
+        }
+    }
+
+
+    private void Shoot1()
+    {
+        if (Time.timeScale > 0)
         {
             GameObject clone = Instantiate(Bullet1);
 
@@ -21,9 +58,9 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    public void OnFire2(InputValue value)
+    private void Shoot2()
     {
-        if (value.isPressed)
+        if (Time.timeScale > 0)
         {
             GameObject clone = Instantiate(Bullet2);
 
@@ -31,4 +68,5 @@ public class PlayerShooting : MonoBehaviour
             clone.transform.rotation = shootPoint.transform.rotation;
         }
     }
+
 }
